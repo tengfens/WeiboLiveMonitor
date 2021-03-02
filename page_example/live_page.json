@@ -1,0 +1,68 @@
+{
+    "code": 100000,
+    "msg": "success",
+    "error_code": 0,
+    "data": {
+        "item": {
+            "reposts_count": 47,
+            "comments_count": 1449,
+            "attitudes_count": 2010,
+            "following": 0,
+            "liked": 0,
+            "live_id": "1022:2321324609879498162693",
+            "cover": "https:\/\/wx1.sinaimg.cn\/large\/002ZQN4oly1gnjj49h0ypj60u0142k0502.jpg",
+            "landscape": 0,
+            "status": 3,
+            "mid": "4609880067146024",
+            "height": 1280,
+            "width": 720,
+            "stream_info": {
+                "pull": {
+                    "live_origin_flv_url": "https:\/\/plwb.live.weibo.com\/alicdn\/4609880062691301.flv",
+                    "live_origin_hls_url": "https:\/\/plwb.live.weibo.com\/alicdn\/4609880062691301.m3u8"
+                },
+                "replay_url": {
+                    "ld": "http:\/\/live.video.weibocdn.com\/4609880062691301_index.m3u8",
+                    "hd": "http:\/\/live.video.weibocdn.com\/4609880062691301_index.m3u8",
+                    "origin": "http:\/\/live.video.weibocdn.com\/4609880062691301_index.m3u8"
+                }
+            },
+            "free_type": 0,
+            "live_type": 0,
+            "anchor_uid": false,
+            "auto_stime": 1614564517,
+            "auto_weibo_time": 1614564517,
+            "desc": "\u6765\u770b\u6211\u76f4\u64ad\u7684\u6bcf\u4e00\u4e2a\u59d1\u5a18\u90fd\u80fd\u72c2\u5403\u4e0d\u80d6\uff01",
+            "watch_limit_info": {
+                "type": 0,
+                "free_time": 0,
+                "pay_coin": 0
+            }
+        },
+        "watch_limit": [],
+        "subscribe_list": [],
+        "user_info": {
+            "uid": 2746203844,
+            "screen_name": "\u5b81\u9759",
+            "profile_image_url": "https:\/\/tvax2.sinaimg.cn\/crop.0.0.1080.1080.50\/002ZQN4oly8gnpgeunlzcj60u00u0gob02.jpg?KID=imgbed,tva&Expires=1614606360&ssig=W79ErT2q%2BW",
+            "verified": 1,
+            "verified_type": 0,
+            "verified_type_ext": 1,
+            "user_auth_type": 3,
+            "gender": "f",
+            "avatar": "https:\/\/tvax2.sinaimg.cn\/crop.0.0.1080.1080.1024\/002ZQN4oly8gnpgeunlzcj60u00u0gob02.jpg?KID=imgbed,tva&Expires=1614606360&ssig=IBOS3lrEjB",
+            "id": 2746203844,
+            "idstr": "2746203844",
+            "name": "\u5b81\u9759",
+            "cover_image_phone": "http:\/\/wx2.sinaimg.cn\/crop.0.0.640.640.640\/a3afbec4ly1fkk4xpknmaj20yi0yi798.jpg",
+            "avatar_large": "https:\/\/tvax2.sinaimg.cn\/crop.0.0.1080.1080.180\/002ZQN4oly8gnpgeunlzcj60u00u0gob02.jpg?KID=imgbed,tva&Expires=1614606361&ssig=XVnDbO2O8L",
+            "avatar_hd": "https:\/\/tvax2.sinaimg.cn\/crop.0.0.1080.1080.1024\/002ZQN4oly8gnpgeunlzcj60u00u0gob02.jpg?KID=imgbed,tva&Expires=1614606361&ssig=KIQZ3FAbCr",
+            "followers_count": 17217826,
+            "verified_reason": "\u6f14\u5458\u5b81\u9759\u3002\u4ee3\u8868\u4f5c\uff1a\u7535\u5f71\u300a\u7ea2\u6cb3\u8c37\u300b\u7535\u89c6\u5267\u300a\u5b5d\u5e84\u79d8\u53f2\u300b\u7b49",
+            "verified_trade": "1017",
+            "verified_reason_url": "",
+            "verified_source": "",
+            "verified_source_url": ""
+        }
+    }
+}
