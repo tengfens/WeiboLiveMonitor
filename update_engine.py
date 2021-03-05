@@ -4,6 +4,7 @@ import time
 import json
 import os
 import time
+from random import randint
 
 MONTH_MAP = {
     "Jan": '01',
@@ -119,6 +120,7 @@ class UpdateEngine(object):
         meta_diff = {}
         for uid in self.__uid_list:
             user, diff = self.__update_meta_for_one_user(uid)
+            time.sleep(randint(1, 10))
             if diff:
                 meta_diff[user] = {}
                 meta_diff[user]['uid'] = uid

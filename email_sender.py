@@ -18,7 +18,7 @@ class Email(object):
             msg = MIMEMultipart()
             msg.attach(MIMEText(content,'html','utf-8'))
             msg['Subject'] = subject
-            msg['From'] = self.__usr
+            msg['From'] = 'Live Notification <{}>'.format(self.__usr)
             msg['To'] = ';'.join(to_list)
             self.__client.sendmail(self.__usr, to_list, msg.as_string())
             print("[{}] {}: email notification is sent.".format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), self.__usr))

@@ -23,4 +23,4 @@ while True:
     if not meta_diff:
         print("[{}] no new live updated".format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
     print()
-    time.sleep(randint(30,60))
+    time.sleep(randint(20, 60))
