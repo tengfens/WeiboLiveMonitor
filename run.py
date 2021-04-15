@@ -8,7 +8,28 @@ from setting import *
 
 FILE_DIR = os.path.dirname(os.path.realpath(__file__))
 
-engine = update_engine.UpdateEngine(UID_LIST)
+env = os.environ
+if env['UID_LIST']:
+    uid_list = env['UID_LIST'].split(';')
+else:
+    uid_list = UID_LIST
+
+if env['TO_LIST']:
+    to_list = env['TO_LIST'].split(';')
+else:
+    to_list = TO_LIST
+
+if env['MAIL_USR']:
+    mail_usr = env['MAIL_USR']
+else:
+    mail_usr = MAIL_USR
+
+if env['MAIL_AUTH']:
+    mail_auth = env['MAIL_AUTH']
+else:
+    mail_auth = MAIL_AUTH
+
+engine = update_engine.UpdateEngine(uid_list)
 while True:
     print("[{}] <<-- check live status -->>".format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
     meta_diff = engine.update_meta()
@@ -17,9 +38,9 @@ while True:
         for timestamp in meta_diff[i]['diff'].keys():
             contents += html_generator.generate_one_content(timestamp, meta_diff[i]['diff'][timestamp]['url'], meta_diff[i]['diff'][timestamp]['live_hls_url'], meta_diff[i]['diff'][timestamp]['live_replay_url'])
         html = html_generator.generate_html(os.path.join(FILE_DIR, 'template.html'), os.path.join(FILE_DIR, 'pre_send.html'), meta_diff[i]['uid'], i, contents)
-        email = email_sender.Email(MAIL_USR, MAIL_AUTH)
+        email = email_sender.Email(mail_usr, mail_auth)
         email.connect()
-        email.send(TO_LIST, '{}\'s WeiBo Live is Updated !'.format(i), html)
+        email.send(to_list, '{}\'s WeiBo Live is Updated !'.format(i), html)
     if not meta_diff:
         print("[{}] no new live updated".format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
     print()

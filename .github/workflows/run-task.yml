@@ -1,0 +1,32 @@
+name: Run Daily Task
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  UID_LIST: ${{ secrets.UID_LIST }}
+  TO_LIST: ${{ secrets.TO_LIST }}
+  MAIL_USR: ${{ secrets.MAIL_USR }}
+  MAIL_AUTH: ${{ secrets.MAIL_AUTH }}
+
+jobs:
+  run-daily-task:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Run Script
+      run: |
+        python run.py
