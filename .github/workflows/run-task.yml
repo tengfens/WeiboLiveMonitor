@@ -1,16 +1,9 @@
-name: Run Daily Task
+name: Run Task
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-env:
-  UID_LIST: ${{ secrets.UID_LIST }}
-  TO_LIST: ${{ secrets.TO_LIST }}
-  MAIL_USR: ${{ secrets.MAIL_USR }}
-  MAIL_AUTH: ${{ secrets.MAIL_AUTH }}
+  workflow_dispatch:
+  schedule:
+    - cron: '1/2 * * * *' 
 
 jobs:
   run-daily-task:
@@ -19,6 +12,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+        fetch-depth: 0 
     - name: Set up Python 3.9
       uses: actions/setup-python@v2
       with:
@@ -28,5 +24,24 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run Script
+      with:
+        UID_LIST: ${{ secrets.UID_LIST }}
+        TO_LIST: ${{ secrets.TO_LIST }}
+        MAIL_USR: ${{ secrets.MAIL_USR }}
+        MAIL_AUTH: ${{ secrets.MAIL_AUTH }}
       run: |
-        python run.py
+        python run.py --run_once
+    - name: Create local changes
+      run: |
+        git add -A
+    - name: Commit files
+      run: |
+        git config --local user.email "actions@users.noreply.github.com"
+        git config --local user.name "Automated Publisher"
+        timestamp=$(date -u)
+        git commit -m "Automated publish: ${timestamp}" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ github.ref }}
