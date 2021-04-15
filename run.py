@@ -3,6 +3,7 @@ import html_generator
 import email_sender
 import time
 import os
+from argparse import ArgumentParser
 from random import randint
 from setting import *
 
@@ -29,6 +30,15 @@ if 'MAIL_AUTH' in env.keys() and env['MAIL_AUTH']:
 else:
     mail_auth = MAIL_AUTH
 
+arg_parser = ArgumentParser()
+arg_parser.add_argument(
+    "--run_once",
+    help="only run fetch the data once",
+    dest="run_once", 
+    action='store_true',
+    default=False)
+args = arg_parser.parse_args()
+
 engine = update_engine.UpdateEngine(uid_list)
 while True:
     print("[{}] <<-- check live status -->>".format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
@@ -45,3 +55,5 @@ while True:
         print("[{}] no new live updated".format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())))
     print()
     time.sleep(randint(20, 60))
+    if args.run_once:
+        break
