@@ -4,7 +4,11 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '1/2 * * * *' 
-
+env:
+  UID_LIST: ${{ secrets.UID_LIST }}
+  TO_LIST: ${{ secrets.TO_LIST }}
+  MAIL_USR: ${{ secrets.MAIL_USR }}
+  MAIL_AUTH: ${{ secrets.MAIL_AUTH }}
 jobs:
   run-daily-task:
 
@@ -21,11 +25,6 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run Script
-      with:
-        UID_LIST: ${{ secrets.UID_LIST }}
-        TO_LIST: ${{ secrets.TO_LIST }}
-        MAIL_USR: ${{ secrets.MAIL_USR }}
-        MAIL_AUTH: ${{ secrets.MAIL_AUTH }}
       run: |
         python run.py --run_once
     - name: Create local changes
