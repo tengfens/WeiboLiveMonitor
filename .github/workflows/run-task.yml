@@ -27,15 +27,16 @@ jobs:
     - name: Run Script
       run: |
         python run.py --run_once
-    - name: Create local changes
+    - name: Create local changes and commit
       run: |
+        if [ -n "$(git status -s)" ]
+        then
         git add -A
-    - name: Commit files
-      run: |
         git config --local user.email "actions@users.noreply.github.com"
         git config --local user.name "Automated Publisher"
         timestamp=$(date -u)
         git commit -m "Automated publish: ${timestamp}" -a
+        fi
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
