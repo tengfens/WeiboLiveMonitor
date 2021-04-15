@@ -3,7 +3,7 @@ name: Run Task
 on:
   workflow_dispatch:
   schedule:
-    - cron: '1/2 * * * *' 
+    - cron: '1/5 * * * *' 
 env:
   UID_LIST: ${{ secrets.UID_LIST }}
   TO_LIST: ${{ secrets.TO_LIST }}
