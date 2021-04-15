@@ -9,22 +9,22 @@ from setting import *
 FILE_DIR = os.path.dirname(os.path.realpath(__file__))
 
 env = os.environ
-if env['UID_LIST']:
+if 'UID_LIST' in env.keys() and env['UID_LIST']:
     uid_list = env['UID_LIST'].split(';')
 else:
     uid_list = UID_LIST
 
-if env['TO_LIST']:
+if 'TO_LIST' in env.keys() and env['TO_LIST']:
     to_list = env['TO_LIST'].split(';')
 else:
     to_list = TO_LIST
 
-if env['MAIL_USR']:
+if 'MAIL_USR' in env.keys() and env['MAIL_USR']:
     mail_usr = env['MAIL_USR']
 else:
     mail_usr = MAIL_USR
 
-if env['MAIL_AUTH']:
+if 'MAIL_AUTH' in env.keys() and env['MAIL_AUTH']:
     mail_auth = env['MAIL_AUTH']
 else:
     mail_auth = MAIL_AUTH
