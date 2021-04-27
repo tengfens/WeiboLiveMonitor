@@ -4,14 +4,15 @@ from email.mime.multipart import MIMEMultipart
 import time
 
 class Email(object):
-    def __init__(self, usr, pwd):
+    def __init__(self, usr, pwd, smtp_server, smtp_port):
         self.__usr = usr
         self.__pwd = pwd
-        self.__client = smtplib.SMTP('smtp.qq.com', 25)
+        self.__client = smtplib.SMTP(smtp_server, smtp_port)
     
     def connect(self):
         print("[{}] {}: login in email server".format(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), self.__usr))
-        self.__client.login(self.__usr, self.__pwd)
+        if self.__pwd:
+            self.__client.login(self.__usr, self.__pwd)
     
     def send(self, to_list, subject, content):
         try:

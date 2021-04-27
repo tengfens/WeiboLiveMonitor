@@ -30,6 +30,16 @@ if 'MAIL_AUTH' in env.keys() and env['MAIL_AUTH']:
 else:
     mail_auth = MAIL_AUTH
 
+if 'SMTP_SERVER' in env.keys() and env['SMTP_SERVER']:
+    smtp_server = env['SMTP_SERVER']
+else:
+    smtp_server = SMTP_SERVER
+
+if 'SMTP_PORT' in env.keys() and env['SMTP_PORT']:
+    smtp_port = env['SMTP_PORT']
+else:
+    smtp_port = int(SMTP_PORT)
+
 arg_parser = ArgumentParser()
 arg_parser.add_argument(
     "--run_once",
@@ -48,7 +58,7 @@ while True:
         for timestamp in meta_diff[i]['diff'].keys():
             contents += html_generator.generate_one_content(timestamp, meta_diff[i]['diff'][timestamp]['url'], meta_diff[i]['diff'][timestamp]['live_hls_url'], meta_diff[i]['diff'][timestamp]['live_replay_url'])
         html = html_generator.generate_html(os.path.join(FILE_DIR, 'template.html'), os.path.join(FILE_DIR, 'pre_send.html'), meta_diff[i]['uid'], i, contents)
-        email = email_sender.Email(mail_usr, mail_auth)
+        email = email_sender.Email(mail_usr, mail_auth, smtp_server, smtp_port)
         email.connect()
         email.send(to_list, '{}\'s WeiBo Live is Updated !'.format(i), html)
     if not meta_diff:
